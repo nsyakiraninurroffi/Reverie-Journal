@@ -5,7 +5,7 @@
   <img src="https://img.shields.io/badge/React_19-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React 19" />
   <img src="https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E" alt="Vite" />
   <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind CSS" />
-  <img src="https://img.shields.io/badge/Laravel_12-FF2D20?style=for-the-badge&logo=laravel&logoColor=white" alt="Laravel 12" />
+  <img src="https://img.shields.io/badge/Laravel_11-FF2D20?style=for-the-badge&logo=laravel&logoColor=white" alt="Laravel 11" />
   <img src="https://img.shields.io/badge/Framer_Motion-0055FF?style=for-the-badge&logo=framer&logoColor=white" alt="Framer Motion" />
 </div>
 
@@ -25,7 +25,7 @@
 ## 🛠️ The Tech Stack
 
 **Client-Side (Frontend):** React 19, Vite, Tailwind CSS v4, Framer Motion, Lucide React, Axios, React Router DOM.  
-**Server-Side (Backend):** Laravel 12, PHP 8.2+, SQLite, Sanctum untuk API Authentication.  
+**Server-Side (Backend):** Laravel 11, PHP 8.2+, SQLite, Sanctum untuk API Authentication.  
 
 ## 🚀 How to Launch It (Getting Started)
 
