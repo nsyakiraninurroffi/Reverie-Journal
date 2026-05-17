@@ -1,0 +1,183 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Georgia&display=swap');
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  font-family: 'Inter', system-ui, sans-serif;
+  line-height: 1.6;
+  font-weight: 400;
+  cursor: url('data:image/svg+xml;utf8,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L14.4 9.6L22 12L14.4 14.4L12 22L9.6 14.4L2 12L9.6 9.6L12 2Z" fill="%23c6e3e7" stroke="%233f3f46" stroke-width="1.5"/></svg>') 12 12, auto;
+  @apply text-zinc-900 transition-colors duration-500;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: -1;
+  background: 
+    radial-gradient(circle at 15% 50%, rgba(167, 139, 250, 0.4), transparent 60%),
+    radial-gradient(circle at 85% 30%, rgba(253, 224, 71, 0.5), transparent 60%), /* Sunflower Yellow */
+    radial-gradient(circle at 50% 80%, rgba(253, 186, 116, 0.5), transparent 60%), /* Sunrise Peach */
+    radial-gradient(circle at 20% 20%, rgba(56, 189, 248, 0.3), transparent 50%),
+    linear-gradient(-45deg, #fffbeb, #fef3c7, #fff1f2, #f8fafc);
+  background-size: 200% 200%;
+  animation: auroraMagic 25s ease-in-out infinite alternate;
+}
+
+.dark {
+  @apply text-zinc-100;
+}
+
+.dark body::before {
+  background: 
+    radial-gradient(circle at 15% 50%, rgba(76, 29, 149, 0.5), transparent 60%),
+    radial-gradient(circle at 85% 30%, rgba(217, 119, 6, 0.4), transparent 60%), /* Dark Goldenrod */
+    radial-gradient(circle at 50% 80%, rgba(245, 158, 11, 0.35), transparent 60%), /* Deep Amber */
+    radial-gradient(circle at 20% 20%, rgba(190, 24, 93, 0.4), transparent 50%),
+    linear-gradient(-45deg, #09090b, #1e1b4b, #2e1065, #450a0a);
+  background-size: 200% 200%;
+}
+
+@keyframes auroraMagic {
+  0% { background-position: 0% 0%; }
+  50% { background-position: 100% 100%; }
+  100% { background-position: 0% 100%; }
+}
+
+/* Paper Texture Utility */
+.paper-texture {
+  position: relative;
+}
+.paper-texture::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.4;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  mix-blend-mode: multiply;
+}
+.dark .paper-texture::before {
+  opacity: 0.15;
+  mix-blend-mode: overlay;
+}
+
+@keyframes auroraMagic {
+  0% { background-position: 0% 0%; }
+  50% { background-position: 100% 100%; }
+  100% { background-position: 0% 100%; }
+}
+
+/* Custom selection */
+::selection {
+  background: rgba(198, 227, 231, 0.4);
+  color: inherit;
+}
+
+@layer components {
+  .nav-link {
+    @apply text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center gap-2;
+  }
+  .title {
+    @apply text-4xl md:text-5xl font-extrabold tracking-tight text-zinc-900 dark:text-white mb-6;
+  }
+  .primary-btn {
+    @apply w-full flex justify-center items-center py-3 px-6 border border-transparent rounded-2xl shadow-sm text-sm font-bold text-zinc-900 bg-gradient-to-r from-[#c6e3e7] via-[#edddd8] to-[#f3d6b7] hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#c6e3e7] transition-all duration-300 hover:scale-[1.02];
+  }
+  .secondary-btn {
+    @apply w-full flex justify-center items-center py-3 px-6 border border-zinc-200 dark:border-zinc-700 rounded-2xl text-sm font-semibold text-zinc-700 dark:text-zinc-300 bg-white dark:bg-zinc-800/50 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-all duration-300;
+  }
+  input, textarea {
+    @apply mt-1 block w-full px-4 py-3 bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-2xl text-sm shadow-sm placeholder-zinc-400 dark:placeholder-zinc-500 text-zinc-900 dark:text-zinc-100 focus:outline-none focus:border-[#c6e3e7] dark:focus:border-[#c6e3e7] focus:ring-4 focus:ring-[#c6e3e7]/20 transition-all;
+  }
+  .glass-panel {
+    @apply bg-white/80 dark:bg-[#18181b]/80 backdrop-blur-2xl border border-zinc-200/60 dark:border-zinc-800/50 shadow-[0_4px_20px_rgba(0,0,0,0.03)] dark:shadow-sm rounded-2xl transition-all duration-500 ease-out;
+  }
+  .card-hover-magic:hover {
+    @apply -translate-y-2 shadow-[0_20px_40px_rgba(0,0,0,0.1),_0_0_40px_rgba(167,139,250,0.3)] dark:shadow-[0_20px_50px_rgba(190,24,93,0.4)] border-[#c6e3e7]/80 dark:border-pink-500/50;
+  }
+  header {
+    @apply sticky top-0 z-50 mb-8;
+  }
+  nav {
+    @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between h-20 items-center;
+  }
+  main {
+    @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-24;
+  }
+  
+  /* Realistic Interactive Book Journal Styling */
+  .book-container {
+    @apply flex flex-col lg:flex-row w-full max-w-6xl mx-auto rounded-3xl relative transition-all duration-500 overflow-hidden lg:overflow-visible;
+    box-shadow: 0 35px 60px -15px rgba(0, 0, 0, 0.3), inset 0 0 0 2px rgba(255,255,255,0.1);
+  }
+  .dark .book-container {
+    box-shadow: 0 35px 60px -15px rgba(0, 0, 0, 0.8), inset 0 0 0 2px rgba(255,255,255,0.05);
+  }
+  
+  /* Stitched border effect */
+  .book-stitch {
+    @apply absolute inset-2 rounded-[1.25rem] border-[1.5px] border-dashed border-blue-200/40 dark:border-cyan-800/30 pointer-events-none z-10;
+  }
+
+  .book-page-left, .book-page-right {
+    @apply flex-1 p-6 md:p-12 relative min-h-[600px] lg:min-h-[750px] flex flex-col transition-colors duration-500;
+  }
+  
+  .book-page-left {
+    @apply rounded-t-3xl lg:rounded-l-3xl lg:rounded-tr-none bg-[#f4f7f8] dark:bg-[#1a1b1f] border-b lg:border-b-0 lg:border-r border-zinc-200/50 dark:border-zinc-800/50 shadow-[inset_-10px_0_20px_rgba(0,0,0,0.02)] dark:shadow-[inset_-10px_0_20px_rgba(0,0,0,0.2)];
+  }
+  
+  .book-page-right {
+    @apply rounded-b-3xl lg:rounded-r-3xl lg:rounded-bl-none bg-[#f8fafb] dark:bg-[#1c1d22] shadow-[inset_10px_0_20px_rgba(0,0,0,0.02)] dark:shadow-[inset_10px_0_20px_rgba(0,0,0,0.2)];
+  }
+
+  /* Binding Rings (only visible on Desktop where pages are side-by-side) */
+  .book-spine {
+    @apply absolute top-0 bottom-0 left-1/2 w-12 -ml-6 pointer-events-none z-20 hidden lg:flex flex-col justify-evenly py-10;
+  }
+  
+  .ring-wrapper {
+    @apply relative w-full h-8 flex items-center justify-center;
+  }
+  
+  .hole-left {
+    @apply absolute left-2 w-3 h-3 rounded-full bg-[#e2e8f0] dark:bg-[#09090b] shadow-[inset_0_2px_4px_rgba(0,0,0,0.1)] dark:shadow-[inset_0_2px_4px_rgba(0,0,0,0.6)];
+  }
+  
+  .hole-right {
+    @apply absolute right-2 w-3 h-3 rounded-full bg-[#e2e8f0] dark:bg-[#09090b] shadow-[inset_0_2px_4px_rgba(0,0,0,0.1)] dark:shadow-[inset_0_2px_4px_rgba(0,0,0,0.6)];
+  }
+  
+  .metal-ring {
+    @apply absolute w-8 h-2.5 rounded-full bg-gradient-to-b from-zinc-300 via-zinc-400 to-zinc-500 dark:from-zinc-500 dark:via-zinc-600 dark:to-zinc-800 shadow-[0_4px_6px_rgba(0,0,0,0.3)] dark:shadow-[0_4px_6px_rgba(0,0,0,0.8)];
+  }
+
+  /* Pinned Card styling */
+  .pinned-card-stack {
+    @apply relative w-full mt-4 lg:mt-0 transition-transform duration-500;
+  }
+  .pinned-card-stack::before {
+    content: '';
+    @apply absolute top-1.5 left-1.5 right-[-1.5px] bottom-[-1.5px] rounded-2xl bg-white/40 dark:bg-zinc-800/40 backdrop-blur-sm z-0;
+  }
+  .pinned-card-stack::after {
+    content: '';
+    @apply absolute top-3 left-3 right-[-3px] bottom-[-3px] rounded-2xl bg-white/20 dark:bg-zinc-900/40 backdrop-blur-sm z-[-1];
+  }
+  
+  .pinned-card {
+    @apply relative z-10 bg-white/90 dark:bg-[#25262b] backdrop-blur-xl rounded-2xl p-6 sm:p-8 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.1)] dark:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.6)] border border-white/50 dark:border-zinc-700/30;
+  }
+
+  .book-lines {
+    background-image: repeating-linear-gradient(transparent, transparent 31px, rgba(0,0,0,0.06) 31px, rgba(0,0,0,0.06) 32px);
+    line-height: 32px !important;
+    padding-top: 6px !important;
+  }
+  .dark .book-lines {
+    background-image: repeating-linear-gradient(transparent, transparent 31px, rgba(255,255,255,0.04) 31px, rgba(255,255,255,0.04) 32px);
+  }
+}

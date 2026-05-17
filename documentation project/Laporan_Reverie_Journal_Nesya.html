@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laporan Project - Reverie Journal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* Reverie Journal Clean White Professional Vibe */
+            --bg-dark: #ffffff;
+            --bg-gradient-start: #f8fafc; /* Slate 50 */
+            --bg-gradient-end: #f1f5f9; /* Slate 100 */
+            --accent-primary: #4f46e5; /* Indigo 600 */
+            --accent-secondary: #9333ea; /* Purple 600 */
+            --text-primary: #0f172a; /* Slate 900 */
+            --text-secondary: #334155; /* Slate 700 */
+            --glass-bg: #ffffff; /* Clean white card */
+            --glass-border: #e2e8f0; /* Soft border */
+            --glass-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); /* Soft shadow */
+            --radius-lg: 20px;
+            --radius-md: 12px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
+            color: var(--text-primary);
+            line-height: 1.7;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Glassmorphism Card Style */
+        .glass-panel {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--glass-shadow);
+            padding: 32px;
+            margin-bottom: 32px;
+        }
+
+        /* Typography */
+        h1, h2, h3 {
+            color: var(--text-primary);
+            font-weight: 700;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 8px;
+            background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+            letter-spacing: -0.02em;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--glass-border);
+            padding-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        h3 {
+            font-size: 1.25rem;
+            margin-bottom: 16px;
+            color: var(--accent-primary);
+        }
+
+        p {
+            margin-bottom: 16px;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            text-align: justify;
+        }
+
+        ul {
+            margin-bottom: 16px;
+            padding-left: 24px;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        /* Metadata Table */
+        .metadata-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin-top: 24px;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+        }
+
+        .metadata-table th, .metadata-table td {
+            padding: 14px 20px;
+            text-align: left;
+            border-bottom: 1px solid var(--glass-border);
+            font-size: 0.9rem;
+        }
+
+        .metadata-table th {
+            background: #f8fafc;
+            color: var(--accent-primary);
+            width: 35%;
+            font-weight: 600;
+        }
+
+        .metadata-table td {
+            background: #ffffff;
+            color: var(--text-secondary);
+        }
+
+        .metadata-table tr:last-child th,
+        .metadata-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        a {
+            color: var(--accent-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--accent-primary);
+            text-decoration: underline;
+        }
+
+        /* Image Styling */
+        .img-block {
+            page-break-inside: avoid;
+            margin-bottom: 40px;
+        }
+
+        img {
+            width: 100%;
+            height: auto;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+            margin-bottom: 16px;
+            background: var(--bg-dark); /* Fallback for transparency */
+            object-fit: cover;
+        }
+
+        .img-caption {
+            font-size: 0.85rem;
+            color: var(--accent-primary);
+            text-align: center;
+            margin-bottom: 24px;
+            font-style: italic;
+        }
+
+        /* Print Specific CSS */
+        @media print {
+            @page { 
+                size: A4; 
+                margin: 20mm; 
+            }
+            
+            body {
+                background: #ffffff !important;
+                color: #000000 !important;
+            }
+
+            .glass-panel {
+                break-inside: avoid;
+                page-break-inside: avoid;
+                box-shadow: none !important;
+                border: 1px solid #cbd5e1 !important;
+                background: #ffffff !important;
+            }
+
+            h1, h2, h3, p, th, td {
+                color: #0f172a !important;
+            }
+
+            h1 {
+                -webkit-text-fill-color: #4f46e5 !important;
+            }
+
+            h2 {
+                border-bottom: 1px solid #cbd5e1 !important;
+            }
+
+            .metadata-table th, .metadata-table td {
+                border-bottom: 1px solid #cbd5e1 !important;
+            }
+
+            a {
+                color: #9333ea !important;
+            }
+            
+            .img-block {
+                page-break-inside: avoid;
+                break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- Header & Metadata -->
+    <div class="glass-panel" style="text-align: center;">
+        <p style="text-align: center; color: var(--accent-primary); font-weight: 600; letter-spacing: 2px; text-transform: uppercase; font-size: 0.8rem;">Laporan Dokumentasi Teknis</p>
+        <h1>React Fullstack API with Authentication</h1>
+        <p style="text-align: center; margin-top: 8px;">Sistem Jurnal Digital Berbasis Arsitektur Client-Server</p>
+
+        <table class="metadata-table">
+            <tbody>
+                <tr>
+                    <th>Nama Pengembang</th>
+                    <td>Nesya Kirani Nurroffi (Absen 27)</td>
+                </tr>
+                <tr>
+                    <th>Kelas / Program Keahlian</th>
+                    <td>XI PPLG-RPL 2</td>
+                </tr>
+                <tr>
+                    <th>Mata Pelajaran</th>
+                    <td>Pemrograman Web</td>
+                </tr>
+                <tr>
+                    <th>Guru Pengampu</th>
+                    <td>Ibu Sarah Siti Sumaerah, S.T</td>
+                </tr>
+                <tr>
+                    <th>Sekolah</th>
+                    <td>SMK Negeri 1 Cianjur</td>
+                </tr>
+                <tr>
+                    <th>Link Profil Github</th>
+                    <td><a href="https://github.com/nsyakiraninurroffi" target="_blank">github.com/nsyakiraninurroffi</a></td>
+                </tr>
+                <tr>
+                    <th>Link Repository</th>
+                    <td><a href="https://github.com/nsyakiraninurroffi/Reverie-Journal" target="_blank">github.com/nsyakiraninurroffi/Reverie-Journal</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Arsitektur Sistem & Tech Stack -->
+    <div class="glass-panel">
+        <h2>🚀 Arsitektur Sistem & Teknologi</h2>
+        <p>Aplikasi "Reverie Journal" mengadopsi pola arsitektur <strong>Decoupled Client-Server</strong>, di mana antarmuka pengguna (Frontend) dan logika bisnis serta manajemen data (Backend) dipisahkan secara fisik maupun operasional. Pemisahan ini memberikan skalabilitas tinggi, kemudahan pemeliharaan (<em>maintainability</em>), serta memungkinkan <em>independent deployment</em> untuk kedua sisi.</p>
+        
+        <h3>Frontend: React 19 API Client</h3>
+        <ul>
+            <li><strong>Framework & Build Tool:</strong> Menggunakan <strong>React 19</strong> sebagai <em>core UI library</em> dengan <strong>Vite</strong> untuk <em>bundling</em> aset yang super cepat.</li>
+            <li><strong>State Management & API:</strong> Mengelola <em>state</em> secara internal (<em>Single Page Application</em>) dengan <strong>Axios</strong> sebagai penghubung komunikasi HTTP asinkron.</li>
+            <li><strong>UI/UX Design:</strong> Mengadopsi desain <em>"Dark Glassmorphism"</em> menggunakan <strong>Tailwind CSS v4</strong>, diperkaya transisi halus dari pustaka <strong>Framer Motion</strong>.</li>
+        </ul>
+
+        <h3>Backend & Keamanan: Laravel 11 & Sanctum</h3>
+        <ul>
+            <li><strong>RESTful API Server:</strong> Ditenagai oleh <strong>Laravel 11 (PHP)</strong> untuk menangani logika bisnis dan operasi <em>CRUD</em> (Create, Read, Update, Delete).</li>
+            <li><strong>Authentication System:</strong> Mengimplementasikan <strong>Laravel Sanctum</strong> untuk meng-<em>generate</em> token kriptografi <em>Personal Access Token (PAT)</em>.</li>
+            <li><strong>Security Architecture:</strong> Mengamankan <em>Protected Routes</em> dengan <em>Bearer Token</em> di HTTP Header untuk mencegah akses tidak sah (<em>unauthorized access</em>).</li>
+        </ul>
+    </div>
+
+    <!-- Referensi, Atribusi & Database -->
+    <div class="glass-panel">
+        <h2>📚 Referensi Pembelajaran & Alur Database</h2>
+        <p>Aplikasi ini dibangun dengan merujuk pada beberapa materi pembelajaran berikut sebagai fondasi dasar, lalu disempurnakan dengan eksplorasi mandiri (<em>self-development</em>) untuk fitur-fitur skala lanjut:</p>
+        
+        <h3>Referensi Backend (Laravel API)</h3>
+        <ul>
+            <li><strong>Bagian 1:</strong> <a href="https://youtu.be/LmMJB3STuU4?si=OLC3cl1SpzAQC78-" target="_blank">https://youtu.be/LmMJB3STuU4?si=OLC3cl1SpzAQC78-</a></li>
+            <li><strong>Bagian 2:</strong> <a href="https://youtu.be/7pCDK321ckE?si=eOucRfyluYVovB4w" target="_blank">https://youtu.be/7pCDK321ckE?si=eOucRfyluYVovB4w</a></li>
+        </ul>
+
+        <h3>Referensi Frontend (React UI)</h3>
+        <ul>
+            <li><strong>Bagian 1:</strong> <a href="https://youtu.be/Qfe7QlFFArA?si=pToq0MW-XHkKaYIf" target="_blank">https://youtu.be/Qfe7QlFFArA?si=pToq0MW-XHkKaYIf</a></li>
+            <li><strong>Bagian 2:</strong> <a href="https://youtu.be/hJvbSCCzG3w?si=qq7AxdgminNwcJWQ" target="_blank">https://youtu.be/hJvbSCCzG3w?si=qq7AxdgminNwcJWQ</a></li>
+        </ul>
+
+        <h3>Visualisasi Arsitektur & Alur Database (Canva)</h3>
+        <ul>
+            <li><strong>Fullstack Backend & Flow:</strong> <a href="https://www.canva.com/design/DAGkSsBm9ZE/PJRZdesuYpSugM6kA_-XBQ/view?utm_content=DAGkSsBm9ZE&utm_campaign=designshare&utm_medium=link&utm_source=viewer" target="_blank">Akses Presentasi Canva Di Sini</a></li>
+        </ul>
+        
+        <p style="margin-top: 12px; margin-bottom: 8px;"><strong>Penjelasan Alur Relasi Database (MySQL):</strong></p>
+        <ul style="margin-top: 0;">
+            <li><strong>Users Table:</strong> Menyimpan data kredensial autentikasi pengguna. Bertindak sebagai entitas utama yang berelasi <em>One-to-Many</em> dengan entitas lain (Posts, Likes, dan Notifications).</li>
+            <li><strong>Posts Table:</strong> Menyimpan entitas konten jurnal (teks dan <em>path</em> gambar). Terdapat <em>Foreign Key</em> <code>user_id</code> yang mengikat secara ketat setiap entitas jurnal kepada pembuat aslinya.</li>
+            <li><strong>Likes & Notifications Table:</strong> Berperan sebagai tabel interaksi. Ketika <em>User A</em> menyukai <em>Post</em> milik <em>User B</em>, riwayatnya akan tersimpan di tabel Likes untuk memvalidasi sentuhan tombol, dan seketika itu juga memicu data baru ke tabel Notifications sebagai <em>Event Tracker</em> untuk mengingatkan <em>User B</em> secara <em>real-time</em>.</li>
+        </ul>
+
+        <div style="margin-top: 32px; padding: 16px; background: rgba(79, 70, 229, 0.05); border-left: 4px solid var(--accent-primary); border-radius: 8px;">
+            <p style="color: var(--text-primary); font-weight: 500; font-style: italic; margin-bottom: 0;">
+                "Selain referensi dasar di atas, seluruh fitur interaktif tingkat lanjut dan penyelesaian <em>bugs</em> (termasuk Telegram Chatbot Webhook, sistem Notifikasi, alur Database kompleks, animasi Framer Motion, hingga estetik Glassmorphism) dieksplorasi dan dikembangkan sendiri sepenuhnya oleh <strong>Nesya Kirani Nurroffi</strong>."
+            </p>
+        </div>
+    </div>
+
+    <!-- Dokumentasi Fungsional & UI -->
+    <div class="glass-panel">
+        <h2>💻 Dokumentasi Fungsional & Alur Logika</h2>
+        
+        <!-- Halaman Home / Main Feed -->
+        <div class="img-block">
+            <img src="./ss-home.png" alt="Halaman Utama / Feed Reverie Journal" />
+            <div class="img-caption">Gambar 1. Antarmuka Utama (Main Feed) & Real-Time Clock</div>
+            <h3>Penyajian Data Asinkron & Integrasi Ekosistem</h3>
+        <ul>
+            <li><strong>Data Fetching:</strong> Memanfaatkan <em>hook</em> <code>useEffect</code> untuk meluncurkan <em>HTTP GET request</em> ke server sesaat setelah komponen UI di-<em>render</em> perdana.</li>
+            <li><strong>Layout & Animation:</strong> Menata daftar jurnal dalam arsitektur <em>Grid/Masonry</em>, dikombinasikan dengan efek <em>fade-in</em> dan <em>slide-up</em> agar visual tidak monoton.</li>
+            <li><strong>Real-Time Clock:</strong> Mengintegrasikan komponen jam <em>real-time</em> via <code>setInterval</code> JavaScript murni untuk menunjang estetika tema <em>journaling</em>.</li>
+        </ul>
+        </div>
+
+        <!-- Halaman Login -->
+        <div class="img-block">
+            <img src="./ss-login.png" alt="Halaman Login Reverie Journal" />
+            <div class="img-caption">Gambar 2. Antarmuka Autentikasi (Login)</div>
+            <h3>Mekanisme Autentikasi Pengguna & Tokenisasi Sanctum</h3>
+        <ul>
+            <li><strong>Controlled Form:</strong> Mengisolasi dan menangkap <em>input</em> kredensial pengguna (Email & Password) secara langsung melalui <em>React State</em>.</li>
+            <li><strong>API Request:</strong> Mengirimkan muatan asinkron via Axios ke <em>endpoint</em> <code>/api/login</code> guna dieksekusi oleh <em>Controller</em> Laravel.</li>
+            <li><strong>Token Management:</strong> Menangkap balasan <em>Plain Text Token</em>, menyimpannya secara persisten pada <code>localStorage</code>, lalu memicu manuver <em>Redirect</em> ke area privat aplikasi.</li>
+        </ul>
+        </div>
+
+        <!-- Halaman Register -->
+        <div class="img-block">
+            <img src="./ss-register.png" alt="Halaman Register Reverie Journal" />
+            <div class="img-caption">Gambar 3. Antarmuka Registrasi Akun Baru</div>
+            <h3>Alur Pendaftaran Entitas & Penanganan Umpan Balik (Feedback Handling)</h3>
+        <ul>
+            <li><strong>Form Submission:</strong> Menstransmisikan objek JSON (Nama, Email, Password) ke <em>endpoint</em> <code>/api/register</code> dengan dukungan antarmuka transisi visual (<em>loading state</em>).</li>
+            <li><strong>Error Handling:</strong> Menangani respons <em>422 Unprocessable Entity</em> dari server (misal: Email duplikat), lalu membedah pesan kegagalan tersebut menjadi <em>inline error message</em> tanpa merusak estetika.</li>
+            <li><strong>Auto-Login Flow:</strong> Jika basis data sukses mencatat identitas baru (<em>201 Created</em>), sistem otomatis menyiapkan sesi otentikasi agar <em>user</em> dapat langsung mengakses fitur tanpa <em>login</em> ulang.</li>
+        </ul>
+        </div>
+
+        <!-- Halaman Dashboard / Profile -->
+        <div class="img-block">
+            <img src="./ss-profile.png" alt="Dashboard / Profil Reverie Journal" />
+            <div class="img-caption">Gambar 4. Area Personal Pengguna (Profile & Dashboard)</div>
+            <h3>Penerapan Protected Routes & Rendering Data Terotorisasi</h3>
+        <ul>
+            <li><strong>Protected Route Firewall:</strong> Menginspeksi memori <code>localStorage</code>; jika token fiktif atau absen, manuver pemindahan (<em>bounced back</em>) ke halaman otentikasi langsung diaktifkan.</li>
+            <li><strong>Authorized Fetching:</strong> Menyertakan <code>Authorization: Bearer {token}</code> pada <em>Header</em> HTTP untuk memverifikasi entitas <em>user</em> sebelum mengambil privasi datanya di server.</li>
+            <li><strong>Personalized Dashboard:</strong> Menyajikan panel profil interaktif yang menayangkan Avatar dan deretan spesifik jurnal yang mutlak hanya dimiliki oleh pengguna bersangkutan.</li>
+        </ul>
+        </div>
+
+        <!-- Halaman Create Journal -->
+        <div class="img-block">
+            <img src="./ss-create.png" alt="Form Pembuatan Jurnal" />
+            <div class="img-caption">Gambar 5. Antarmuka Penulisan Jurnal Baru (Create Post)</div>
+            <h3>Manajemen State Kompleks & Interaksi API Multipart</h3>
+        <ul>
+            <li><strong>Multipart Form Data:</strong> Tidak menggunakan struktur JSON standar, melainkan <code>FormData</code> untuk kapabilitas membungkus teks dan <em>file</em> gambar ke dalam satu lintasan asinkron.</li>
+            <li><strong>Client-Side Preview:</strong> Menerapkan metode <code>URL.createObjectURL()</code> untuk seketika menayangkan pratinjau (<em>preview</em>) dari gambar yang baru dipilih pengguna.</li>
+            <li><strong>Server File Handling:</strong> Modul <em>Storage</em> Laravel bertugas menyeleksi format/ukuran <em>file</em>, memindahkannya secara fisik, lalu merangkai simpul direktori (<em>Path</em>)-nya ke kolom basis data.</li>
+        </ul>
+        </div>
+
+        <!-- Halaman Journal Detail & Like System -->
+        <div class="img-block">
+            <img src="./ss-show.png" alt="Detail Jurnal dan Sistem Interaksi" />
+            <div class="img-caption">Gambar 6. Tampilan Detail Jurnal & Sistem Interaksi (Like/Notification)</div>
+            <h3>Dynamic Routing & Logika Interaksi (Like)</h3>
+        <ul>
+            <li><strong>Dynamic URL Parameter:</strong> Mengeksploitasi fitur perutean React untuk menjaring ID spesifik (misal: <code>/posts/:id</code>) sebagai landasan <em>fetching</em> data jurnal tunggal.</li>
+            <li><strong>Optimistic UI:</strong> Memoles <em>User Experience</em> dengan merubah wujud tombol "Like" seketika saat di-klik, selagi proses komputasi server bekerja di belakang layar.</li>
+            <li><strong>Relational Integrity:</strong> <em>Eloquent Model</em> berperan memagari dan memvalidasi interaksi agar mencegah munculnya duplikasi basis data <em>Likes</em> dari pengguna yang sama.</li>
+        </ul>
+            </div>
+
+        <!-- Fitur Notifikasi Terpusat -->
+        <div class="img-block">
+            <img src="./ss-notification.png" alt="Pusat Notifikasi Interaktif" />
+            <div class="img-caption">Gambar 7. Pusat Notifikasi Interaktif (Notification Center)</div>
+            <h3>Sistem Notifikasi Event-Driven</h3>
+        <ul>
+            <li><strong>Activity Fetching:</strong> Melakukan pemeriksaan API periodik ke rute <code>/api/notifications</code> guna menghimpun riwayat rekam jejak sosial (seperti sentuhan "Likes" yang baru masuk).</li>
+            <li><strong>Relational DB Tracker:</strong> Arsitektur struktur tabel didesain matang untuk merangkai ikatan antara <em>Actor ID</em> (pelaku interaksi) dengan <em>Subject ID</em> (objek jurnal terpengaruh).</li>
+            <li><strong>Dynamic Alert Component:</strong> Pengolahan elemen SVG (<em>Lucide React</em>) cerdas yang menyorotkan noktah merah dinamis apabila status pesan tervalidasi <em>Unread</em>.</li>
+        </ul>
+        </div>
+
+        <!-- Fitur Chatbot / Telegram Feedback -->
+        <div class="img-block" style="text-align: center;">
+            <img src="./ss-chatbot.jpg" alt="Sistem Chatbot dan Feedback Telegram" style="max-width: 320px; height: auto; margin: 0 auto 16px auto; display: block;" />
+            <div class="img-caption">Gambar 8. Asisten Chatbot Interaktif & Integrasi Telegram API</div>
+            <h3>Pembuatan Komponen Floating Chatbox & Telegram Webhook</h3>
+        <ul>
+            <li><strong>Floating UI Element:</strong> Elemen bot diapungkan menggunakan atribut <code>position: fixed</code>, dimotori oleh fungsi <em>React Hook</em> (<code>useState</code>) untuk melancarkan operasi buka-tutup jendela (<em>panel toggle</em>).</li>
+            <li><strong>Spring Animation:</strong> Menganimasikan objek agar terus bergerak natural (<em>looping animation</em>) dengan formulasi perhitungan fisika canggih dari <em>Framer Motion</em>.</li>
+            <li><strong>Telegram Ecosystem:</strong> Mengalih-fungsikan Laravel sebagai mediator asinkron (<em>middleware</em>) yang men-<em>forward</em> isi percakapan ke gerbang <strong>Telegram Bot API</strong>. Hal ini membuahkan sarana monitor proaktif langsung ke ponsel pengembang, tanpa membebani daya komputasi perangkat lunak.</li>
+        </ul>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
