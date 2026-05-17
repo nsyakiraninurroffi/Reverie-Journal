@@ -1,5 +1,5 @@
 <div align="center">
-  <h1>🌌 Reverie Journal</h1>
+  <h1>🌌 𝓡𝓮𝓿𝓮𝓻𝓲𝓮 𝓙𝓸𝓾𝓻𝓷𝓪𝓵 l</h1>
   <p><i>Capture your thoughts in an aesthetic, glassmorphic universe.</i> ✨</p>
 
   <img src="https://img.shields.io/badge/React_19-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React 19" />
